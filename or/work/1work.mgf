@@ -1,0 +1,69 @@
+V 000044 55 581           1616081919813 rtl
+(_unit VHDL(or_gate 0 5(rtl 0 12))
+	(_version ve8)
+	(_time 1616081919814 2021.03.18 11:38:39)
+	(_source(\../design.vhd\))
+	(_parameters tan)
+	(_code bcbcefe9ede8beaababaade7e9bab9baeabbbeb9ea)
+	(_ent
+		(_time 1616081919811)
+	)
+	(_object
+		(_port(_int a -1 0 7(_ent(_in))))
+		(_port(_int b -1 0 8(_ent(_in))))
+		(_port(_int q -1 0 9(_ent(_out))))
+		(_prcs
+			(line__14(_arch 0 0 14(_prcs(_simple)(_trgt(2))(_sens(0)(1)))))
+		)
+		(_type(_ext ~extieee.std_logic_1164.STD_LOGIC(0 STD_LOGIC)))
+	)
+	(_use(ieee(std_logic_1164))(std(standard)))
+	(_model . rtl 1 -1)
+)
+V 000043 55 1063          1616081919823 tb
+(_unit VHDL(testbench 0 5(tb 0 9))
+	(_version ve8)
+	(_time 1616081919824 2021.03.18 11:38:39)
+	(_source(\../testbench.vhd\))
+	(_parameters tan)
+	(_code bcbdbde8eaeaebabbbbfaee6e8bae9babfbab4bbb8)
+	(_ent
+		(_time 1616081919821)
+	)
+	(_comp
+		(or_gate
+			(_object
+				(_port(_int a -1 0 14(_ent (_in))))
+				(_port(_int b -1 0 15(_ent (_in))))
+				(_port(_int q -1 0 16(_ent (_out))))
+			)
+		)
+	)
+	(_inst DUT 0 24(_comp or_gate)
+		(_port
+			((a)(a_in))
+			((b)(b_in))
+			((q)(q_out))
+		)
+		(_use(_ent . or_gate)
+		)
+	)
+	(_object
+		(_sig(_int a_in -1 0 19(_arch(_uni))))
+		(_sig(_int b_in -1 0 19(_arch(_uni))))
+		(_sig(_int q_out -1 0 19(_arch(_uni))))
+		(_prcs
+			(line__26(_arch 0 0 26(_prcs(_wait_for)(_trgt(0)(1))(_mon)(_read(2)))))
+		)
+		(_type(_ext ~extieee.std_logic_1164.STD_LOGIC(0 STD_LOGIC)))
+	)
+	(_use(ieee(std_logic_1164))(std(standard)))
+	(_static
+		(1818845510 808398880)
+		(1818845510 825176096)
+		(1818845510 1479487776)
+		(1818845510 825176352)
+		(1953719636 1852793888 11877)
+	)
+	(_model . tb 1 -1)
+)
