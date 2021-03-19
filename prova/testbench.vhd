@@ -22,8 +22,8 @@ begin
     -- btb <= '0' after 0 ns, '1' after 7 ns;
     -- ctb <= '0' after 0 ns, '1' after 5 ns;
 
-    tb_proc : process
-    
+    process
+
     begin
         atb <= '0';
         btb <= '0';
@@ -37,6 +37,8 @@ begin
 
         wait for 2 ns;
         btb <= '1';
+
+        wait for 2 ns;
 
         wait; -- sospende definitivamente l'esecuzione del processo
     end process;
