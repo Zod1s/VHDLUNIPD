@@ -1,0 +1,11 @@
+v 4
+file . "testbench.vhd" "21f75915186e5a0ba2c2c4b26a15b648088b645f" "20210322141651.459":
+  entity test_bench at 2( 29) + 0 on 33;
+  architecture tb_arch of test_bench at 8( 117) + 0 on 34;
+file . "design.vhd" "4426e2411db44bd164e33559e670f540a0672146" "20210322141651.450":
+  entity mux_4_1 at 2( 26) + 0 on 27;
+  architecture mux_arch_bev1 of mux_4_1 at 13( 247) + 0 on 28;
+  architecture mux_arch_bev2 of mux_4_1 at 25( 582) + 0 on 29;
+  architecture mux_arch_bev3 of mux_4_1 at 38( 920) + 0 on 30;
+  architecture mux_arch_bev4 of mux_4_1 at 59( 1408) + 0 on 31;
+  architecture mux_arch_dataflow of mux_4_1 at 81( 1934) + 0 on 32;

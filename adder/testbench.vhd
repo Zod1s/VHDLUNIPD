@@ -1,8 +1,8 @@
 --  A testbench has no ports.
-entity adder_tb is
-end adder_tb;
+entity test_bench is
+end test_bench;
 
-architecture behav of adder_tb is
+architecture behav of test_bench is
     --  Declaration of the component that will be instantiated.
     component adder
         port (i0, i1 : in bit; ci : in bit; s : out bit; co : out bit);
@@ -13,7 +13,7 @@ architecture behav of adder_tb is
     signal i0, i1, ci, s, co : bit;
 begin
     --  Component instantiation.
-    adder_0: adder port map (i0 => i0, i1 => i1, ci => ci, s => s, co => co);
+    adder_0 : adder port map (i0 => i0, i1 => i1, ci => ci, s => s, co => co);
 
     --  This process does the real job.
     process
