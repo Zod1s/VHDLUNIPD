@@ -1,4 +1,7 @@
 --  A testbench has no ports.
+LIBRARY IEEE;
+USE IEEE.std_logic_1164.ALL;
+
 ENTITY test_bench IS
 END test_bench;
 
@@ -15,19 +18,25 @@ ARCHITECTURE behav OF test_bench IS
 
     --  Specifies which entity is bound with the component.
     -- FOR adder_0 : adder USE ENTITY work.adder;
-    SIGNAL i0, i1, ci, s, co : BIT;
+    SIGNAL i0, i1, ci, s, co : STD_LOGIC;
 
 BEGIN
     --  Component instantiation.
-    adder_0 : ENTITY work.adder(rtl) PORT MAP(i0 => i0, i1 => i1, ci => ci, s => s, co => co);
+    adder_0 : ENTITY work.adder(rtl) PORT MAP(
+        i0 => i0,
+        i1 => i1,
+        ci => ci,
+        s => s,
+        co => co
+        );
 
     --  This process does the real job.
     PROCESS
         TYPE pattern_type IS RECORD
             --  The inputs of the adder.
-            i0, i1, ci : BIT;
+            i0, i1, ci : STD_LOGIC;
             --  The expected outputs of the adder.
-            s, co : BIT;
+            s, co : STD_LOGIC;
         END RECORD;
         --  The patterns to apply.
         TYPE pattern_array IS ARRAY (NATURAL RANGE <>) OF pattern_type;
