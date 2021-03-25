@@ -4,22 +4,22 @@ END test_bench;
 
 ARCHITECTURE behav OF test_bench IS
     --  Declaration of the component that will be instantiated.
-    COMPONENT adder
-        PORT (
-            i0, i1 : IN BIT;
-            ci : IN BIT;
-            s : OUT BIT;
-            co : OUT BIT
-        );
-    END COMPONENT;
+    -- COMPONENT adder
+    --     PORT (
+    --         i0, i1 : IN BIT;
+    --         ci : IN BIT;
+    --         s : OUT BIT;
+    --         co : OUT BIT
+    --     );
+    -- END COMPONENT;
 
     --  Specifies which entity is bound with the component.
-    FOR adder_0 : adder USE ENTITY work.adder;
+    -- FOR adder_0 : adder USE ENTITY work.adder;
     SIGNAL i0, i1, ci, s, co : BIT;
 
 BEGIN
     --  Component instantiation.
-    adder_0 : adder PORT MAP(i0 => i0, i1 => i1, ci => ci, s => s, co => co);
+    adder_0 : ENTITY work.adder(rtl) PORT MAP(i0 => i0, i1 => i1, ci => ci, s => s, co => co);
 
     --  This process does the real job.
     PROCESS
