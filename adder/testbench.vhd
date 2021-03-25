@@ -1,56 +1,62 @@
 --  A testbench has no ports.
-entity test_bench is
-end test_bench;
+ENTITY test_bench IS
+END test_bench;
 
-architecture behav of test_bench is
+ARCHITECTURE behav OF test_bench IS
     --  Declaration of the component that will be instantiated.
-    component adder
-        port (i0, i1 : in bit; ci : in bit; s : out bit; co : out bit);
-    end component;
+    COMPONENT adder
+        PORT (
+            i0, i1 : IN BIT;
+            ci : IN BIT;
+            s : OUT BIT;
+            co : OUT BIT
+        );
+    END COMPONENT;
 
     --  Specifies which entity is bound with the component.
-    for adder_0: adder use entity work.adder;
-    signal i0, i1, ci, s, co : bit;
-begin
+    FOR adder_0 : adder USE ENTITY work.adder;
+    SIGNAL i0, i1, ci, s, co : BIT;
+
+BEGIN
     --  Component instantiation.
-    adder_0 : adder port map (i0 => i0, i1 => i1, ci => ci, s => s, co => co);
+    adder_0 : adder PORT MAP(i0 => i0, i1 => i1, ci => ci, s => s, co => co);
 
     --  This process does the real job.
-    process
-        type pattern_type is record
+    PROCESS
+        TYPE pattern_type IS RECORD
             --  The inputs of the adder.
-            i0, i1, ci : bit;
+            i0, i1, ci : BIT;
             --  The expected outputs of the adder.
-            s, co : bit;
-        end record;
+            s, co : BIT;
+        END RECORD;
         --  The patterns to apply.
-        type pattern_array is array (natural range <>) of pattern_type;
-        constant patterns : pattern_array :=
-            (('0', '0', '0', '0', '0'),
-             ('0', '0', '1', '1', '0'),
-             ('0', '1', '0', '1', '0'),
-             ('0', '1', '1', '0', '1'),
-             ('1', '0', '0', '1', '0'),
-             ('1', '0', '1', '0', '1'),
-             ('1', '1', '0', '0', '1'),
-             ('1', '1', '1', '1', '1'));
-    begin
+        TYPE pattern_array IS ARRAY (NATURAL RANGE <>) OF pattern_type;
+        CONSTANT patterns : pattern_array :=
+        (('0', '0', '0', '0', '0'),
+        ('0', '0', '1', '1', '0'),
+        ('0', '1', '0', '1', '0'),
+        ('0', '1', '1', '0', '1'),
+        ('1', '0', '0', '1', '0'),
+        ('1', '0', '1', '0', '1'),
+        ('1', '1', '0', '0', '1'),
+        ('1', '1', '1', '1', '1'));
+    BEGIN
         --  Check each pattern.
-        for i in patterns'range loop
+        FOR i IN patterns'RANGE LOOP
             --  Set the inputs.
             i0 <= patterns(i).i0;
             i1 <= patterns(i).i1;
             ci <= patterns(i).ci;
             --  Wait for the results.
-            wait for 1 ns;
+            WAIT FOR 1 ns;
             --  Check the outputs.
-            assert s = patterns(i).s
-                report "bad sum value" severity error;
-            assert co = patterns(i).co
-                report "bad carry out value" severity error;
-        end loop;
-        assert false report "end of test" severity note;
+            ASSERT s = patterns(i).s REPORT "bad sum value" SEVERITY error;
+            ASSERT co = patterns(i).co REPORT "bad carry out value" SEVERITY error;
+        END LOOP;
+
+        ASSERT false REPORT "end of test" SEVERITY note;
         --  Wait forever; this will finish the simulation.
-        wait;
-    end process;
-end behav;
+        WAIT;
+
+    END PROCESS;
+END behav;
