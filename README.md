@@ -1,1 +1,4 @@
 # VHDLUNIPD
+
+.ghw
+.cf
