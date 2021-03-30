@@ -1,0 +1,10 @@
+v 4
+file . "half_adder.vhd" "44e87312c2edb1529a5aca67461fc874beaed158" "20210329121356.232":
+  entity half_adder at 1( 0) + 0 on 29;
+  architecture hlf of half_adder at 11( 168) + 0 on 30;
+file . "design.vhd" "2ccadb467f099ebc701e1f88bc864547c7af9825" "20210329121356.234":
+  entity full_adder at 2( 26) + 0 on 31;
+  architecture adder of full_adder at 12( 200) + 0 on 32;
+file . "testbench.vhd" "9a2089ae8a1e9009e5c46e173961979c08de4aad" "20210329121356.243":
+  entity test_bench at 2( 29) + 0 on 33;
+  architecture tb_arch of test_bench at 8( 117) + 0 on 34;

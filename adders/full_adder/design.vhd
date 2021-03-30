@@ -11,7 +11,7 @@ END full_adder;
 
 ARCHITECTURE adder OF full_adder IS
 
-    SIGNAL Pint, Gint : STD_LOGIC;
+    SIGNAL Pout, Gout : STD_LOGIC;
     SIGNAL PCi : STD_LOGIC;
 
 BEGIN
@@ -19,17 +19,17 @@ BEGIN
         PORT MAP(
             A => A,
             B => B,
-            P => Pint,
-            G => Gint
+            P => Pout,
+            G => Gout
         );
 
     ha2 : ENTITY work.half_adder
         PORT MAP(
-            A => Pint,
+            A => Pout,
             B => Cin,
             P => S,
             G => PCi
         );
 
-    Co <= Gint OR PCi;
+    Co <= Gout OR PCi;
 END adder;
