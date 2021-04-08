@@ -63,12 +63,4 @@ BEGIN
         '1' AFTER 21 ns,
         '0' AFTER 24 ns,
         '1' AFTER 35 ns;
-
-    -- tb_proc : PROCESS
-
-    -- BEGIN
-
-    --     WAIT;
-
-    -- END PROCESS;
 END tb_arch; -- test_bench
