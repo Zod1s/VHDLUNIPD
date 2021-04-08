@@ -29,17 +29,30 @@ BEGIN
     --     '1' AFTER 70 ns,
     --     '0' AFTER 80 ns;
 
-    clk_proc : PROCESS -- senza sens list, quindi serve un wait finale
+    -- clk_proc : PROCESS -- senza sens list, quindi serve un wait finale
+    -- BEGIN
+    --     IF (now < 70 ns) THEN -- now dà il tempo attuale di esecuzione
+    --         clk <= '0';
+    --         WAIT FOR 10 ns;
+    --         clk <= '1';
+    --         WAIT FOR 10 ns;
+    --     ELSE -- la simulazione dura 70 ns
+    --         WAIT;
+    --     END IF;
+    -- END PROCESS;
+
+    clk_proc : PROCESS
     BEGIN
-        IF (now < 70 ns) THEN -- now dà il tempo attuale di esecuzione
+        FOR i IN 1 TO 4 LOOP
             clk <= '0';
             WAIT FOR 10 ns;
             clk <= '1';
             WAIT FOR 10 ns;
-        ELSE -- la simulazione dura 70 ns
-            WAIT;
-        END IF;
+        END LOOP;
+
+        WAIT;
     END PROCESS;
+
     RESgen <= '1' AFTER 0 ns,
         '0' AFTER 0.5 ns,
         '1' AFTER 55 ns;
