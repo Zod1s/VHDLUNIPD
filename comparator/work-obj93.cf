@@ -1,7 +1,0 @@
-v 4
-file . "testbench.vhd" "6446e326052ec56981f293204f907c96140049c5" "20210326110616.133":
-  entity test_bench at 2( 29) + 0 on 29;
-  architecture tb_arch of test_bench at 8( 117) + 0 on 30;
-file . "design.vhd" "4b8a4dec6ccfaf013dd7bfc1e625ddfdcfc7a627" "20210326110616.131":
-  entity comparator at 2( 26) + 0 on 27;
-  architecture comp_arch of comparator at 12( 201) + 0 on 28;

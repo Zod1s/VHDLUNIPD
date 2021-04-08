@@ -1,8 +1,0 @@
-v 4
-file . "design.vhd" "b826a08a52ab851f22958bfe82627b18aa0325ae" "20210322143144.352":
-  entity priority_encoder at 2( 25) + 0 on 16;
-  architecture enc_dataflow1 of priority_encoder at 13( 254) + 0 on 17;
-  architecture enc_bev1 of priority_encoder at 22( 457) + 0 on 18;
-file . "testbench.vhd" "71a06424a856965aa35fd3a0ea3ea4ce04c66476" "20210322143144.360":
-  entity test_bench at 2( 28) + 0 on 19;
-  architecture tb_arch of test_bench at 8( 154) + 0 on 20;

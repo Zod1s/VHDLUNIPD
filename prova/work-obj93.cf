@@ -1,7 +1,0 @@
-v 4
-file . "testbench.vhd" "c0fb0a3669131b57653a57c202705e2eb556cc32" "20210319133735.161":
-  entity test_bench at 2( 28) + 0 on 37;
-  architecture tb_arch of test_bench at 9( 155) + 0 on 38;
-file . "design.vhd" "f33c9773164159c2b0dbd6cac6072daec774f336" "20210319133735.159":
-  entity circuit at 2( 25) + 0 on 35;
-  architecture circuit_arch of circuit at 12( 177) + 0 on 36;
