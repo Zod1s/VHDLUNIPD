@@ -41,7 +41,7 @@ BEGIN
         WAIT FOR 5 ns;
         tS <= "11";
         WAIT FOR 5 ns;
-        tSLi <= '0';
+        tSLi <= '1';
         WAIT FOR 5 ns;
         tS <= "10";
         WAIT;

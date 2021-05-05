@@ -4,8 +4,8 @@ USE IEEE.std_logic_1164.ALL;
 
 ENTITY multiplexer IS
     PORT (
-        I : IN STD_LOGIC_VECTOR(0 TO 3);
-        S : IN STD_LOGIC_VECTOR(0 TO 1);
+        I : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+        S : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
         Y : OUT STD_LOGIC
     );
 END multiplexer;
