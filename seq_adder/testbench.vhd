@@ -11,7 +11,7 @@ ARCHITECTURE tb_arch OF test_bench IS
     SIGNAL a, b : STD_LOGIC;
 
 BEGIN
-    summer : ENTITY work.summer(rtl) PORT MAP(
+    summer : ENTITY work.summer(bev) PORT MAP(
         a => a,
         b => b,
         s => s
@@ -19,15 +19,15 @@ BEGIN
 
     exec : PROCESS
     BEGIN
-        a <= '1' AFTER 0 ns,
-            '0' AFTER 5 ns,
-            '1' AFTER 10 ns,
-            '0' AFTER 20 ns;
+        a <= '1' AFTER 0 ns, 
+             '0' AFTER 5 ns,
+             '1' AFTER 10 ns,
+             '0' AFTER 20 ns;
 
         b <= '0' AFTER 0 ns,
-            '1' AFTER 5 ns,
-            '1' AFTER 10 ns,
-            '0' AFTER 20 ns;
+             '1' AFTER 5 ns,
+             '1' AFTER 10 ns,
+             '0' AFTER 20 ns;
         WAIT;
     END PROCESS;
 END tb_arch;

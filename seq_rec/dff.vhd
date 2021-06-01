@@ -4,14 +4,14 @@ USE IEEE.std_logic_1164.ALL;
 
 ENTITY dff IS
     PORT (
-        clk, d, res : IN STD_LOGIC;
+        d, clk, res : IN STD_LOGIC;
         q : OUT STD_LOGIC
     );
 END dff;
 
 ARCHITECTURE bev OF dff IS
 BEGIN
-    dff_proc : PROCESS (clk, res)
+    proc : PROCESS (clk, res)
     BEGIN
         IF (res = '1') THEN
             q <= '0';
