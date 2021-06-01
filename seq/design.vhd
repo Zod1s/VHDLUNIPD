@@ -10,13 +10,6 @@ ENTITY summer IS
 END summer;
 
 ARCHITECTURE rtl OF summer IS
-    COMPONENT dff IS
-        PORT (
-            clk, d : IN STD_LOGIC;
-            q : OUT STD_LOGIC
-        );
-    END COMPONENT;
-
     SIGNAL d : STD_LOGIC;
     SIGNAL clk : STD_LOGIC;
     SIGNAL res : STD_LOGIC;
