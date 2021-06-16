@@ -2,99 +2,97 @@
 LIBRARY IEEE;
 USE IEEE.std_logic_1164.ALL;
 
-ENTITY sh_reg IS
+ENTITY usr IS
     PORT (
-        clk, res : IN STD_LOGIC;
-        D : IN STD_LOGIC_VECTOR(0 TO 3);
-        SLi, SRi : IN STD_LOGIC;
-        S : IN STD_LOGIC_VECTOR(0 TO 1);
-        Q : OUT STD_LOGIC_VECTOR(0 TO 3)
+        D : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+        S : IN STD_LOGIC_VECTOR (1 DOWNTO 0);
+        SRi, SLi : IN STD_LOGIC;
+        clk : IN STD_LOGIC;
+        res : IN STD_LOGIC;
+        Q : OUT STD_LOGIC_VECTOR (3 DOWNTO 0)
     );
-END sh_reg;
+END usr;
 
-ARCHITECTURE arch_shReg OF sh_reg IS
-    SIGNAL Y, Q1 : STD_LOGIC_VECTOR (0 TO 3);
+ARCHITECTURE rtl OF usr IS
+    SIGNAL Qin : STD_LOGIC_VECTOR (3 DOWNTO 0);
+    SIGNAL Qo1, Qo2 : STD_LOGIC_VECTOR (3 DOWNTO 0);
+
 BEGIN
-    mul0 : ENTITY work.multiplexer
-        PORT MAP(
-            I(0) => Q1(0),
-            I(1) => Q1(1),
-            I(2) => SLi,
-            I(3) => D(0),
-            S => S,
-            Y => Y(0)
+    mux0 : ENTITY work.mux(bev) PORT MAP (
+        S => S,
+        I(0) => Qo1(0),
+        I(1) => Qo1(1),
+        I(2) => SLi,
+        I(3) => D(0),
+        Y => Qin(0)
         );
 
-    mul1 : ENTITY work.multiplexer
-        PORT MAP(
-            I(0) => Q1(1),
-            I(1) => Q1(2),
-            I(2) => Q1(0),
-            I(3) => D(1),
-            S => S,
-            Y => Y(1)
+    mux1 : ENTITY work.mux(bev) PORT MAP (
+        S => S,
+        I(0) => Qo1(1),
+        I(1) => Qo1(2),
+        I(2) => Qo1(0),
+        I(3) => D(1),
+        Y => Qin(1)
         );
 
-    mul2 : ENTITY work.multiplexer
-        PORT MAP(
-            I(0) => Q1(2),
-            I(1) => Q1(3),
-            I(2) => Q1(1),
-            I(3) => D(2),
-            S => S,
-            Y => Y(2)
+    mux2 : ENTITY work.mux(bev) PORT MAP (
+        S => S,
+        I(0) => Qo1(2),
+        I(1) => Qo1(3),
+        I(2) => Qo1(1),
+        I(3) => D(2),
+        Y => Qin(2)
         );
 
-    mul3 : ENTITY work.multiplexer
-        PORT MAP(
-            I(0) => Q1(3),
-            I(1) => SRi,
-            I(2) => Q1(2),
-            I(3) => D(3),
-            S => S,
-            Y => Y(3)
+    mux3 : ENTITY work.mux(bev) PORT MAP (
+        S => S,
+        I(0) => Qo1(3),
+        I(1) => SRi,
+        I(2) => Qo1(2),
+        I(3) => D(3),
+        Y => Qin(3)
         );
 
-    FF0 : ENTITY work.flipflop
-        PORT MAP(
-            D => Y(0),
-            clk => clk,
-            Q => Q1(0),
-            Qn => OPEN
+    FF0 : ENTITY work.dff(bev) PORT MAP (
+        d => Qin(0),
+        res => res,
+        clk => clk,
+        q => Qo2(0),
+        qn => OPEN
         );
 
-    FF1 : ENTITY work.flipflop
-        PORT MAP(
-            D => Y(1),
-            clk => clk,
-            Q => Q1(1),
-            Qn => OPEN
+    FF1 : ENTITY work.dff(bev) PORT MAP (
+        d => Qin(1),
+        res => res,
+        clk => clk,
+        q => Qo2(1),
+        qn => OPEN
         );
 
-    FF2 : ENTITY work.flipflop
-        PORT MAP(
-            D => Y(2),
-            clk => clk,
-            Q => Q1(2),
-            Qn => OPEN
+    FF2 : ENTITY work.dff(bev) PORT MAP (
+        d => Qin(2),
+        res => res,
+        clk => clk,
+        q => Qo2(2),
+        qn => OPEN
         );
 
-    FF3 : ENTITY work.flipflop
-        PORT MAP(
-            D => Y(3),
-            clk => clk,
-            Q => Q1(3),
-            Qn => OPEN
+    FF3 : ENTITY work.dff(bev) PORT MAP (
+        d => Qin(3),
+        res => res,
+        clk => clk,
+        q => Qo2(3),
+        qn => OPEN
         );
 
-    procRes : PROCESS (Q1, res)
+    proc : PROCESS (clk, res)
     BEGIN
         IF (res = '1') THEN
-            Y(0) <= '0';
-            Y(1) <= '0';
-            Y(2) <= '0';
-            Y(3) <= '0';
+            Q <= "0000";
+        ELSIF rising_edge(clk) THEN
+            Q <= Qo2;
+            Qo1 <= Qo2;
         END IF;
-        Q <= Q1;
     END PROCESS;
-END arch_shReg;
+END rtl;

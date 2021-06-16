@@ -6,44 +6,37 @@ ENTITY test_bench IS
 END test_bench;
 
 ARCHITECTURE tb_arch OF test_bench IS
-    SIGNAL tclk, tres, tSLi, tSRi : STD_LOGIC;
-    SIGNAL tS : STD_LOGIC_VECTOR(0 TO 1);
-    SIGNAL tD, tQ : STD_LOGIC_VECTOR(0 TO 3);
-BEGIN
-    shRegtb : ENTITY work.sh_reg
-        PORT MAP(
-            clk => tclk,
-            res => tres,
-            D => tD,
-            SLi => tSLi,
-            SRi => tSRi,
-            S => tS,
-            Q => tQ);
+    SIGNAL clk, SRi, SLi : STD_LOGIC;
+    SIGNAL Q, D : STD_LOGIC_VECTOR (3 DOWNTO 0);
+    SIGNAL S : STD_LOGIC_VECTOR (1 DOWNTO 0);
+    SIGNAL res : STD_LOGIC;
 
-    clkproc : PROCESS
+BEGIN
+    shift_reg : ENTITY work.usr(rtl) PORT MAP(
+        D => D,
+        S => S,
+        SRi => SRi,
+        SLi => SLi,
+        clk => clk,
+        res => res,
+        Q => Q
+        );
+
+    clk_proc : PROCESS
     BEGIN
-        FOR i IN 1 TO 15 LOOP
-            tclk <= '0';
+        FOR i IN 1 TO 4 LOOP
+            clk <= '1';
             WAIT FOR 5 ns;
-            tclk <= '1';
+            clk <= '0';
             WAIT FOR 5 ns;
         END LOOP;
         WAIT;
     END PROCESS;
 
-    funzionamento : PROCESS
-    BEGIN
-        tres <= '1';
-        WAIT FOR 8 ns;
-        tres <= '0';
-        WAIT FOR 5 ns;
-        tD <= "1010";
-        WAIT FOR 5 ns;
-        tS <= "11";
-        WAIT FOR 5 ns;
-        tSLi <= '1';
-        WAIT FOR 5 ns;
-        tS <= "10";
-        WAIT;
-    END PROCESS;
+    D <= "0110" AFTER 0 ns, "0000" AFTER 10 ns;
+    S <= "11" AFTER 0 ns, "01" AFTER 10 ns;
+    SRi <= '0';
+    SLi <= '0';
+    res <= '1' AFTER 0 ns, '0' AFTER 1 ns;
+
 END tb_arch;
