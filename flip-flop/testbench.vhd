@@ -6,18 +6,17 @@ ENTITY test_bench IS
 END test_bench;
 
 ARCHITECTURE tb_arch OF test_bench IS
-
-    SIGNAL Dgen, RESgen, Qout : STD_LOGIC;
-    SIGNAL clk : STD_LOGIC;
+  SIGNAL Dgen, RESgen, Qout : STD_LOGIC;
+  SIGNAL clk : STD_LOGIC;
 
 BEGIN
-    mux : ENTITY work.DFF(DFF_arch) PORT MAP(
-        D => Dgen,
-        clk => clk,
-        RES => RESgen,
-        EN => '1',
-        Q => Qout
-        );
+  mux : ENTITY work.DFF(DFF_arch) PORT MAP(
+    D => Dgen,
+    clk => clk,
+    RES => RESgen,
+    EN => '1',
+    Q => Qout
+    );
 
     -- clk <= '0' AFTER 0 ns, -- un modo per generare un segnale
     --     '1' AFTER 10 ns, -- di clock
@@ -41,26 +40,26 @@ BEGIN
     --     END IF;
     -- END PROCESS;
 
-    clk_proc : PROCESS
-    BEGIN
-        FOR i IN 1 TO 4 LOOP
-            clk <= '0';
-            WAIT FOR 10 ns;
-            clk <= '1';
-            WAIT FOR 10 ns;
-        END LOOP;
+  clk_proc : PROCESS
+  BEGIN
+    FOR i IN 1 TO 4 LOOP
+      clk <= '0';
+      WAIT FOR 10 ns;
+      clk <= '1';
+      WAIT FOR 10 ns;
+    END LOOP;
 
-        WAIT;
-    END PROCESS;
+    WAIT;
+  END PROCESS;
 
-    RESgen <= '1' AFTER 0 ns,
-        '0' AFTER 0.5 ns,
-        '1' AFTER 55 ns;
+  RESgen <= '1' AFTER 0 ns,
+            '0' AFTER 0.5 ns,
+            '1' AFTER 55 ns;
 
-    Dgen <= '0' AFTER 0 ns,
-        '1' AFTER 5 ns,
-        '0' AFTER 15 ns,
-        '1' AFTER 21 ns,
-        '0' AFTER 24 ns,
-        '1' AFTER 35 ns;
+  Dgen <= '0' AFTER 0 ns,
+          '1' AFTER 5 ns,
+          '0' AFTER 15 ns,
+          '1' AFTER 21 ns,
+          '0' AFTER 24 ns,
+          '1' AFTER 35 ns;
 END tb_arch; -- test_bench

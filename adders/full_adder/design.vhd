@@ -10,7 +10,6 @@ ENTITY full_adder IS
 END full_adder;
 
 ARCHITECTURE adder OF full_adder IS
-
     SIGNAL Pout, Gout : STD_LOGIC;
     SIGNAL PCi : STD_LOGIC;
 
